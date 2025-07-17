@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Результаты обработки</h2>
+<div class="row">
+  {% for r in results %}
+  <div class="col-md-6 mb-4">
+    <div class="card">
+      <img src="{{ r.url }}" class="card-img-top" alt="{{ r.filename }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ r.filename }}</h5>
+        <p class="card-text">
+          {% if r.found %}
+            🦌 Найдено оленей: {{ r.count }}
+          {% else %}
+            ❌ Олени не найдены.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="mt-4">
+    <h4>Общее количество оленей: {{ total_count }}</h4>
+  </div>
+  <a href="{{ url_for('index') }}" class="btn btn-secondary">Загрузить ещё</a>
+{% endblock %}
